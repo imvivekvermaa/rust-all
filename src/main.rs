@@ -92,4 +92,21 @@ fn practice() {
     let _race_track_lenght: Kms = 12;
     println!("this was an example for type alias here, in this case as 'Kms'.");
 
+
+    //STRINGS
+
+    println!("this is string literal.");
+    println!("this is string literal and \" \\ \" is an special char and using it with diff characters we will see what we can do.");
+    println!("hello and \\n creates a new line \n like here we did.");
+    println!("similarly \\t creates spaces of 4 same as a tab.");
+    println!("we can do \\\" \\\", in order to use double quotes within the string");
+    println!("similarly \\\\ incase we need \\ inside a string like for path of something.");
+
+    // Also there's something called raw srtring
+    // so raw string make all of above dynamic things just plain string
+    // like no \n \t \ or \" will work.
+    // but we still can't simply do "" inside a string. it's invalid, so we use \" if n only
+    // if the string is not raw string.
+
+    println!(r"this is a way of creating a raw string and we can use inside it.");
 }
