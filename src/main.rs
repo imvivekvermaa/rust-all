@@ -1,5 +1,5 @@
 //#![allow(unused_variables)]
-const _TESTING_CONSTANT : &str = "hello";
+const _TESTING_CONSTANT: &str = "hello";
 fn main() {
     println!("Hello, world!");
     all_available_integers();
@@ -54,7 +54,7 @@ fn all_float_things() {
     println!(
         "this is a way to get the determind float point to print! {:.1}",
         b
-    );
+    ); //this :.1 inside {} is called float format specifier
     println!(
         "we can also use mathematic notations like 'e' in a float variable {}",
         c
@@ -88,15 +88,16 @@ fn practice() {
         "this is called variable shadowing we just change the value from int (21) to {}",
         shadowing
     );
-    
+
     let _race_track_lenght: Kms = 12;
     println!("this was an example for type alias here, in this case as 'Kms'.");
-
 
     //STRINGS
 
     println!("this is string literal.");
-    println!("this is string literal and \" \\ \" is an special char and using it with diff characters we will see what we can do.");
+    println!(
+        "this is string literal and \" \\ \" is an special char and using it with diff characters we will see what we can do."
+    );
     println!("hello and \\n creates a new line \n like here we did.");
     println!("similarly \\t creates spaces of 4 same as a tab.");
     println!("we can do \\\" \\\", in order to use double quotes within the string");
@@ -109,4 +110,45 @@ fn practice() {
     // if the string is not raw string.
 
     println!(r"this is a way of creating a raw string and we can use inside it.");
+
+    // There are built-in rust methods like there are in any other languages
+    // on strings, floats, integer and on other datatypes
+    // need to check 'em out!
+    //like float values has .ceil, .floor, .round. same there'll be on strings etc.
+
+    //Type Casting with "as" keyword!
+    //this below examples is casting diff types
+
+    let _pp: i32 = 2345;
+    let _bb = _pp as i8;
+
+    println!("{}", "coke" == "coke");
+
+    //array
+    let array_example: [&str; 4] = ["apple", "nuts", "cat", "hooter"];
+    let another_example: [i32; 0] = []; //this is how we define empty array
+    //incase of dynamic  values;
+    //but still you can't change/mutate the elements values inside an array
+    //without making it mutable
+    let mut mutable_array: [&str; 3] = ["test1", "test2", "test3"];
+
+    println!("{} is the mutable array.", mutable_array[1]);
+
+    mutable_array[1] = "testing";
+    println!("{} is mutated array.", mutable_array[1]);
+
+    //tuples
+    let employee = ("molly", 32, "sales");
+
+    let name: &str = employee.0;
+    let age: i32 = employee.1;
+    let dept: &str = employee.2;
+    // we could also do simple destructuring of tupele like let (name, age, dept) = employee;
+    println!("{} is name", name);
+    println!("{age} is age");
+    println!("{dept} is department");
+    println!("{employee:?} is is whole tuple here using debug trait w format specifier");
+    println!(
+        "{employee:#?} is is whole tuple here using debug trait w format specifier but along w pretty printing using #"
+    );
 }
