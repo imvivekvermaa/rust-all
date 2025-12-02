@@ -5,6 +5,11 @@ fn main() {
     all_available_integers();
     all_float_things();
     practice();
+    let result: bool = is_even(7);
+
+    println!("{result}");
+
+    conditionals();
 }
 
 fn all_available_integers() {
@@ -151,4 +156,61 @@ fn practice() {
     println!(
         "{employee:#?} is is whole tuple here using debug trait w format specifier but along w pretty printing using #"
     );
+}
+
+fn is_even(nmbr: i32) -> bool {
+    if nmbr % 2 != 0 {
+        return false;
+    }
+
+    return true;
+}
+
+fn conditionals() {
+    let a: &str = "hi";
+    let boolean: bool = true;
+    let num: i32 = 4;
+
+    //there is no concept of truthiness values in rust the outcome/comparision
+    //on condition should be in pure form of boolean (true/false)
+    /*if a {
+        println!("this code block will not run since condition is not in boolean form.");
+    }
+
+    if num {
+        println!("this will also not work since the condition is not boolean and just a number.");
+    }
+    */
+
+    if a == "hi" {
+        println!(
+            "this will get printed since the comparision will produce a boolean at condition level."
+        );
+    }
+
+    if boolean {
+        println!("this will get printed since the condition is in boolean form");
+    }
+
+    //there no ternary operators in rust but we can do something look like
+
+    let result = if a == "hii" {
+        println!("result was true")
+    } else {
+        println!("the result was false")
+    };
+
+    let check_number = 5;
+
+    match check_number {
+        5 => {
+            println!("this code will run")
+        }
+        7 => {
+            println!("if a is 7 then this code will run")
+        }
+        _ => {
+            println!("this is default case");
+        }
+    };
 }
