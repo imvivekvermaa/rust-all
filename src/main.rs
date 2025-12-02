@@ -210,7 +210,31 @@ fn conditionals() {
             println!("if a is 7 then this code will run")
         }
         _ => {
-            println!("this is default case");
+            println!("this is default case")
         }
     };
+
+    //we can also do the match statements like this if not multiple line need to be there.
+    //always keep _ (default) at the end of all match arms
+    //since once _ occure the further execution won't happend after it.
+
+    match check_number {
+        5 => println!("this code will run"),
+        7 => println!("if a is 7 then this code will run"),
+        _ => println!("this is default case"),
+    };
+
+    //weird but we can use if statements inside a match
+
+    match check_number {
+        value if value % 2 == 0 => println!("{value} is even."),
+        value if value % 2 == 1 => println!("{value} is odd."),
+        _ => unreachable!()  // unreachable macro means telling rustc that
+                             // this line of code will never run and if it ever does then
+                             // panic immediately.
+       // _ => println!("Unknown")
+        
+        //although both of above lines will cover all the scenarios but
+        //rsut still won't figure out the what if case so default arm must be there!, Hence-
+    }
 }
