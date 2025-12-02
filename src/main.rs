@@ -245,6 +245,8 @@ fn conditionals() {
 fn loops() {
     let mut count: i32 = 0;
     let mut count1: i32 = 0;
+    let count2: i32 = 10;
+
     loop {
         println!(
             "this will loop to infinitely and {} is the count value.",
@@ -261,5 +263,11 @@ fn loops() {
         println!("this is count: {}", count1);
 
         count1 += 1;
+    }
+
+    //1..count2 means less then count and 1..=count2 is till the count2 mean equal
+    //we can use integers or alphabates like 'a'..='z' and it will iterate 26 characters
+    for i in 1..=count2 {
+        println!("{i} is the changing digit in here using for loop taste with range.");
     }
 }
