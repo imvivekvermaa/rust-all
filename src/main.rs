@@ -10,6 +10,7 @@ fn main() {
     println!("{result}");
 
     conditionals();
+    loops()
 }
 
 fn all_available_integers() {
@@ -229,12 +230,36 @@ fn conditionals() {
     match check_number {
         value if value % 2 == 0 => println!("{value} is even."),
         value if value % 2 == 1 => println!("{value} is odd."),
-        _ => unreachable!()  // unreachable macro means telling rustc that
+        _ => unreachable!(), // unreachable macro means telling rustc that
                              // this line of code will never run and if it ever does then
                              // panic immediately.
-       // _ => println!("Unknown")
-        
-        //although both of above lines will cover all the scenarios but
-        //rsut still won't figure out the what if case so default arm must be there!, Hence-
+                             // _ => println!("Unknown")
+
+                             //although both of above lines will cover all the scenarios but
+                             //rsut still won't figure out the what if case so default arm must be there!, Hence-
+    }
+}
+
+//this is loop example with break statement and similarly there's continue just like in other
+//languages
+fn loops() {
+    let mut count: i32 = 0;
+    let mut count1: i32 = 0;
+    loop {
+        println!(
+            "this will loop to infinitely and {} is the count value.",
+            count
+        );
+        count += 1;
+
+        if count >= 10 {
+            break;
+        };
+    }
+
+    while count1 < 10 {
+        println!("this is count: {}", count1);
+
+        count1 += 1;
     }
 }
