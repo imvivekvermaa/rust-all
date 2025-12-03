@@ -1,16 +1,18 @@
 //#![allow(unused_variables)]
 const _TESTING_CONSTANT: &str = "hello";
 fn main() {
-    println!("Hello, world!");
-    all_available_integers();
-    all_float_things();
-    practice();
-    let result: bool = is_even(7);
+    //println!("Hello, world!");
+    //all_available_integers();
+    //all_float_things();
+    //practice();
+    //let result: bool = is_even(7);
 
-    println!("{result}");
+    //println!("{result}");
 
-    conditionals();
-    loops()
+    //conditionals();
+    //loops()
+    ownership_concepts();
+    strings_example();
 }
 
 fn all_available_integers() {
@@ -270,4 +272,48 @@ fn loops() {
     for i in 1..=count2 {
         println!("{i} is the changing digit in here using for loop taste with range.");
     }
+}
+
+fn ownership_concepts() {
+    // a is owner of value 55 and whenever the scope of a will go out of scope then
+    // variable a will clean the memory of the value 55 form heap or stack. in this case
+    // from stack.
+    let a: i16 = 55;
+    println!("{a}");
+
+    {
+        // as soon as this block will end the b variable shoyld clean the memory
+        // since b is owner of this string value and hence we won't be able to
+        // access b outside of this block.
+        let b: char = 'A';
+        println!("{b}");
+    }
+}
+
+
+fn strings_example() {
+    // till now i have declared strings data variables with type &str
+    // but there are other ways as will
+    // this &str ways is neither on stack nor on heap memory all_float_things
+    // when we do &str, it means that it's just static view of utf-8 text mutable_array
+    // exist somewhere in compiler or system and it's already in bits so no memory all_float_things
+    let one_way: &str = "hello world";
+    let second_way: String = String::new(); // this we use when the string is dynamic
+                                            // like no hardcoded value at compilation time
+                                            // like in case of user inputes and other creates
+
+    //this below String::from("hollow world") is very interesting
+    //in most raw explaination it like we create a string with some existing value in it
+    //allocating the memory in heap and referencing the address to the value.
+    //also that string is growable/mutable as well.
+    // third_way = "hollow world is weird place".to_string(); if we make third_way mutable wit mut
+    let mut third_way: String = String::from("hollow world");
+
+    //that's how we append some more text to string, it will all be in heap
+    third_way.push_str("all around");
+    
+
+    println!("{one_way}");
+    println!("{second_way}");
+    println!("{third_way}");
 }
