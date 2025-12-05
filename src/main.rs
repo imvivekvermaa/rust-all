@@ -363,6 +363,8 @@ fn strings_example() {
 
     println!("{sample}");
 
+    multiple_ref_restrictions();
+
 
 }
 
@@ -370,4 +372,24 @@ fn testing_references_and_borrowing(sample: &mut String) {
     sample.push_str(", we just mutate the string using mut ref");
     println!("here's the {sample}");
 
+}
+
+fn multiple_ref_restrictions() {
+    //In rust we can have as many immutable refs as we want but
+    //we cannot have mutliple mutable refs or a mutable and other immutable
+    //refs side by side at all! for examples
+
+    let mut check1: String = String::from("Apple");
+    let ref1_check: &mut String = &mut check1;
+    
+    //here below it will work because ref2_check variable is in no existence till here.
+    //this is also about something call lifetimes in rust.
+    println!("ref1_check: {ref1_check}");
+    let ref2_check: &String = &check1;
+
+    //this below line throw error as per what we said above for usid sbs.
+    //println!("ref1_check: {ref1_check} and ref2_check: {ref2_check}");
+
+    //println!("ref1_check: {ref1_check}"); //this wiil not work since it's after ref2_check
+    println!("ref2_check: {ref2_check}");
 }
