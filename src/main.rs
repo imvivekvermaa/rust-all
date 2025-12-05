@@ -288,6 +288,21 @@ fn ownership_concepts() {
         let b: char = 'A';
         println!("{b}");
     }
+
+    /*for context, Traits are just kind of contacts which diff "types AKA datatypes" promise to follow/have.
+
+    there's a copy trait and all of the data types which goes to stack memory have "copy" trait
+    which means: 
+    */
+
+    let number1: i16 = 23;
+
+    let another_number =  number1;
+    //it has whole another 23 value in stack separately which has nothing to do with number
+
+    println!("{number1}");
+    println!("{another_number}");
+
 }
 
 
@@ -311,9 +326,48 @@ fn strings_example() {
 
     //that's how we append some more text to string, it will all be in heap
     third_way.push_str("all around");
-    
+
+    // There's a concept of ownership which is valid on heap data references
+    let sample_string: String = String::from("ownership checking happening");
+    println!("{sample_string}");
+
+    //this is important! so waht clone does is that we're explitly enforcing rust to create a copy
+    //of same sample_string value in heap again, it's just like integers and other things
+    //so since now sample_string_new_owner has his own value pointer/reference in heap for the
+    //value that means the code works fine.
+    //
+    //important note: drop() is made of 2 steps (move + destruction of value)
+    //
+    let sample_string_new_owner = sample_string.clone();
+
+    // println!("{sample_string}"); this will throw error because sample_string
+    // doesn't have ownership anymor:wille. the ownership of reference has been moved to
+    //sample_string_new_owner
+
+    drop(sample_string);
+
+    println!("{sample_string_new_owner}");
 
     println!("{one_way}");
     println!("{second_way}");
     println!("{third_way}");
+
+
+    // moer examples
+    // here with &mut the ownership has not been moved instead  testing_references_and_borrowing
+    // bowrrowed the mutatble reference from sample, mutating the string and that's it.
+    // ownership is still in sample variable's hand.
+
+    let mut sample: String = String::from("hello there");
+    testing_references_and_borrowing(&mut sample);
+
+    println!("{sample}");
+
+
+}
+
+fn testing_references_and_borrowing(sample: &mut String) {
+    sample.push_str(", we just mutate the string using mut ref");
+    println!("here's the {sample}");
+
 }
