@@ -365,6 +365,10 @@ fn strings_example() {
 
     multiple_ref_restrictions();
 
+    dangling_ref();
+
+    ownership_w_arrays_tuples();
+
 
 }
 
@@ -392,4 +396,47 @@ fn multiple_ref_restrictions() {
 
     //println!("ref1_check: {ref1_check}"); //this wiil not work since it's after ref2_check
     println!("ref2_check: {ref2_check}");
+}
+
+fn dangling_ref() { // -> &String will throw error
+    let sample_string: String = String::from("test");
+    println!("sample_string: {sample_string}");
+
+    //we know variables are destroyed along w their allocated memory after their scope
+    //here the scope is this function so technically sample_string will be gone once
+    //this function will be done but what if i return the referenceof sample_string from this
+    //function and use it inside main func?
+    //the pointer/reference will make no sense right! it will be a dangling ref pointing to a mem
+    //address which doesn't have string data 
+    //
+    //so rust compiler don't let us do that and throw error when we ruturn the reference
+    //btw references are also some value as we know right using & and actual values using *
+    // so yeah
+
+
+    // &sample_string
+
+}
+
+fn ownership_w_arrays_tuples() {
+    let int_array: [i32; 3] = [3, 2, 5];
+    let first_ele: i32 = int_array[0];
+
+    println!("first_ele: {first_ele}");
+
+    //here just like above will not work
+    //reason is simple remember copy trait with int tyes so above is already a copy create and
+    //ownerships has not been moved but inscase of strings array
+    //now that i did first_ele1 to 0th value of array the the ownership
+    //has partially moved. so either we need to  use .clone() method or
+    // & to make a reference.
+
+    //let string_array: [String; 3] = ["apple", "ball", "puc"];
+    //let first_ele1: String = string_array[0];
+
+    let string_array: [String; 3] = [String::from("apple"), String::from("ball"), String::from("puc")];
+    let first_ele1: &String = &string_array[0];
+
+
+    println!("first_ele1: {first_ele1}");
 }
